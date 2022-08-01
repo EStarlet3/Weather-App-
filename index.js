@@ -34,6 +34,8 @@ function displayWeatherCondition(response) {
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+
+    celciusTemperature = response.data.main.temp;
 }
 
 function search(event) {
@@ -43,6 +45,20 @@ function search(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
+
+function displayFahenreheitTemperature(event) {
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#temperature");
+    let fahrenheitTemperature = (celsiusTemperature.innerHTML * 9) / 5 + 32;
+    temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+function displayCelsiusTemperature(event) {
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#temperature");
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+    let celsiusTemperature = null;
+
 
 let dateELement = document.querySelector("#date");
 let currentTime = new Date();
@@ -57,3 +73,9 @@ iconElement.setAttribute(
   "src",
   "http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png"
 );
+
+Let FahrenheitLink=document.querySelector("#fahrenheit-link");
+FahrenheitLink.addEventListener("click", displayFahenreheitTemperature)
+
+Let CelsiusLink=document.querySelector("#celcius-link");
+CelsiusLink.addEventListener("click", displayCelsiusTemperature)
