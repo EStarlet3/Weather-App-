@@ -51,3 +51,9 @@ let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
 dateELement.innerHTML = formatDate(currentTime);
+
+let iconElement = document.querySelector("#icon");
+iconElement.setAttribute(
+  "src",
+  "http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png"
+);
