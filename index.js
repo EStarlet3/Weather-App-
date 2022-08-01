@@ -49,11 +49,15 @@ function search(event) {
 function displayFahenreheitTemperature(event) {
     event.preventDefault();
     let temperatureElement = document.querySelector("#temperature");
+    celsiusLink.classList.remove("active");
+    fahenreheitLink.classList.add("active");
     let fahrenheitTemperature = (celsiusTemperature.innerHTML * 9) / 5 + 32;
     temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 function displayCelsiusTemperature(event) {
     event.preventDefault();
+    celsiusLink.classList.remove("active");
+    fahenreheitLink.classList.add("active");
     let temperatureElement = document.querySelector("#temperature");
     temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
